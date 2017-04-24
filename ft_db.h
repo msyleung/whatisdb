@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef
+#ifndef FT_DB_H
 # define FT_DB_H
 
 #include <assert.h>
@@ -30,13 +30,13 @@
 #include <string.h>
 #include <time.h>
 
-struct	s_data
+typedef struct	s_data
 {
-	char	*first_name;
-	char	*last_name;
-	int		birthyear;
-	int		phonenumber;
-	char	*curr_proj;
+	char	first_name[50];
+	char	last_name[50];
+	char	birthyear[4];
+	char	phonenumber[10];
+	char	curr_proj[50];
 }		t_data;
 
 #endif
