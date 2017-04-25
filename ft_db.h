@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 13:06:11 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/24 14:20:12 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/24 17:05:23 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,11 @@ typedef struct	s_data
 	char	phonenumber[10];
 	char	curr_proj[50];
 }		t_data;
+
+int		main(void);
+void	ft_add_save(FILE *fd);
+void	ft_view();
+void	ft_del(FILE *fp);
+void	ft_error(int opt);
 
 #endif
