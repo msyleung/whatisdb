@@ -19,7 +19,7 @@ void	ft_add_save(FILE *fd)
 
 	printf("Enter First name:\n");
 	we = scanf("%s", a.first_name);
-	printf("Here's your input: %i, %s", we, a.first_name);
+//	printf("Here's your input: %i, %s", we, a.first_name);
 	printf("Enter Last name:\n");
 	we = scanf("%s", a.last_name);
 	printf("%s", a.last_name);
@@ -32,9 +32,59 @@ void	ft_add_save(FILE *fd)
 	fwrite(&a, sizeof(a), 1, fd);
 }
 
-/*void	ft_view(FILE *fd)
-{*/
+void	ft_view_one(t_data a)
+{
+	
+	printf("First name: %s\n", a.first_name);
+	printf("Last name: %s\n", a.last_name);
+	printf("Year of birthday: %s\n", a.birthyear);
+	printf("Phone namber: %s\n", a.phonenumber);
+	printf("Current project: %s\n", a.curr_proj);
+}
 
+void	ft_view(FILE *fd)
+{
+	t_data a;
+	char *option;
+	char last_name[50];
+
+	printf("Do you want to view all?\nEnter: Y\\N\n");
+	scanf("%s", option);
+//	printf("MY options:%c\n", option);
+
+
+//	fread(&a, sizeof(a), 1, fd);
+//	ft_view_one(a);
+
+	if (option[0] == 'Y')
+	{
+		printf("***1***");
+		while (fread(&a, sizeof(a), 1, fd))
+			ft_view_one(a);
+
+		printf("***2***");
+		return ;
+	}
+	else
+	{
+		printf("Enter Last name of the student:\n");
+		scanf("%s", last_name);
+	}
+		
+		printf("***3***");
+	while (fread(&a, sizeof(a), 1, fd))
+	{
+
+		printf("***4***");
+		if (last_name == a.last_name)
+		{
+			ft_view_one(a);
+			return ;
+		}
+	}
+	printf ("There's no such student\n");
+
+}
 
 
 
@@ -48,9 +98,9 @@ int	main(void)
 	scanf("%d", &option);
 	if (option == 1)
 		ft_add_save(fd);
-/*	else if (option == 2)
-		ft_view();
-	else if (option == 3)
+	else if (option == 2)
+		ft_view(fd);
+/*	else if (option == 3)
 		ft*/
 
 
