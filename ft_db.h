@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 13:06:11 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/24 14:20:12 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/25 17:46:43 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+# define RED	"\x1b[31m"
+# define GREEN	"\x1b[32m"
+# define YELLOW	"\x1b[33m"
+# define BLUE	"\x1b[34m"
+# define MAGENTA	"\x1b[95m"
+# define CYAN	"\x1b[36m"
+# define WHITE	"\x1b[37m"
+# define RESET	"\x1b[0m"
+# define BOLD_ON	"\x1b[1m"
+# define BOLD_OFF	"\x1b[21m"
 
 typedef struct	s_data
 {
