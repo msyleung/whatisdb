@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 14:32:22 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 15:45:26 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 15:54:00 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_view_one(t_data a)
 	printf("Year of birthday: %s\n", a.birthyear);
 	printf("Phone number: %s\n", a.phonenumber);
 	printf("Current project: %s\n", a.curr_proj);
+	printf("\n********************\n");
 }
 
 char	*ft_search_option(int opt)
@@ -120,12 +121,56 @@ void	ft_view(FILE *fd)
 	}
 }
 
+
+void	ft_mod(FILE *fd)
+{
+	t_data a;
+	int	found;
+	char last_name[50];
+
+	rewind(fd);
+	printf("\nEnter Last name of the student to modify:\n");
+	scanf("%s", last_name);
+
+	while (fread(&a, sizeof(a), 1, fd) == 1)
+	{
+		found = 0;
+		if (strcmp(last_name, a.last_name) == 0)
+		{
+			printf("\n\t%sData of the student you're modifying:%s\n",
+					GREEN BOLD_ON, BOLD_OFF RESET);
+			ft_view_one(a);
+			fseek(fd, -sizeof(t_data), SEEK_CUR);
+			found = 1;
+			break ;
+		}
+	}
+	if (found)
+	{
+		printf("%sEnter new  First Name:%s\n", BOLD_ON, BOLD_OFF RESET);
+		scanf("%s", a.first_name);
+		printf("Enter new Last name:\n");
+		scanf("%s", a.last_name);
+		printf("Enter new Year of birth:\n");
+		scanf("%s", a.birthyear);
+		printf("Enter new Phone number:\n");
+		scanf("%s", a.phonenumber);
+		printf("Enter new Current project:\n");
+		scanf ("%s", a.curr_proj);
+
+		fwrite(&a, sizeof(a), 1, fd);
+	}
+
+	if (found == 0)
+		printf ("There's no such student\n");
+}
 int		main(void)
 {
 	int option;
 	int	authorized;
 	FILE *fd;
 
+	ft_welcome_msg();
 	if (!(authorized = ft_secure()))
 		return (0);
 	fd = fopen("file.txt", "r+");
@@ -138,8 +183,9 @@ int		main(void)
 			ft_add_save(fd);
 		else if (option == 2)
 			ft_view(fd);
-//		else if (option == 3)
-//			ft_mod(fd);
+		else if (option == 3)
+			ft_mod(fd);
+
 		else if (option == 4)
 			ft_del(fd);
 		else if (option == 0)

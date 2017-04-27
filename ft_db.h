@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 13:06:11 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 12:25:43 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 16:09:12 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ typedef struct	s_data
 }		t_data;
 
 int			main(void);
+void		ft_welcome_msg(void);
 void		ft_add_save(FILE *fd);
 void		ft_view(FILE *fd);
 void		ft_del(FILE *fd);
 void		ft_error(int opt);
+int			ft_error_security(char *msg);
 int			ft_secure(void);
 
 #endif
