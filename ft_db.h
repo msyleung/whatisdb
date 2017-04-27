@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 13:06:11 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/25 17:46:43 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 12:25:43 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@
 # define RESET	"\x1b[0m"
 # define BOLD_ON	"\x1b[1m"
 # define BOLD_OFF	"\x1b[21m"
+# define DENIED	0
+# define ALLOWED 1
+
+typedef struct s_pass
+{
+	char	*username;
+	char	*password;
+}				t_pass;
 
 typedef struct	s_data
 {
@@ -48,7 +56,6 @@ typedef struct	s_data
 	char	birthyear[5];
 	char	phonenumber[10];
 	char	curr_proj[50];
-
 }		t_data;
 
 int			main(void);
@@ -56,6 +63,6 @@ void		ft_add_save(FILE *fd);
 void		ft_view(FILE *fd);
 void		ft_del(FILE *fd);
 void		ft_error(int opt);
-
+int			ft_secure(void);
 
 #endif

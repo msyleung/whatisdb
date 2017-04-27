@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 14:32:22 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/25 17:44:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 12:36:13 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_view(FILE *fd)
 	}
 }
 
+
 void	ft_mod(FILE *fd)
 {
 	t_data a;
@@ -119,16 +120,19 @@ void	ft_mod(FILE *fd)
 	if (found == 0)
 		printf ("There's no such student\n");
 }
-int	main(void)
+int		main(void)
 {
 	int option;
+	int	authorized;
 	FILE *fd;
 
+	if (!(authorized = ft_secure()))
+		return (0);
 	fd = fopen("file.txt", "r+");
 	option = 1;
 	while (option)
 	{
-		printf("\n\t%sChoose one of the options:%s\n\t 1: add/save\n\t 2: view\n\t 3: modify\n\t 4: delete\n\t 0: exit\n\n", GREEN BOLD_ON, BOLD_OFF RESET);
+		printf("\n\t%sChoose one of the options:%s\n\t 1: add/save\n\t 2: view\n\t 3: modify\n\t 4: delete\n\t 0: exit\n\n", CYAN BOLD_ON, BOLD_OFF RESET);
 		scanf("%d", &option);
 		if (option == 1)
 			ft_add_save(fd);
@@ -136,6 +140,7 @@ int	main(void)
 			ft_view(fd);
 		else if (option == 3)
 			ft_mod(fd);
+
 		else if (option == 4)
 			ft_del(fd);
 		else if (option == 0)
