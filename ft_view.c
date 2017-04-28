@@ -6,13 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:44:58 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 18:26:33 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:29:50 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void	ft_view_one(t_data a)
+void		ft_view_one(t_data a)
 {
 	printf("\n********************\n");
 	printf("First name: %s\n", a.first_name);
@@ -27,15 +27,17 @@ static int	ft_search_opt(int opt)
 {
 	while (opt != 1 && opt != 2 && opt != 3 && opt != 0)
 	{
-		printf("\n\t%s%sHow do you want to look up the student?%s\n\t", CYAN, BOLD_ON, RESET);
-		printf("%sEnter a number:%s\n\t1: First Name\n\t2: Last Name", CYAN, RESET);
+		printf("\n\t%s%sHow do you want to look up", CYAN, BOLD_ON);
+		printf("the student?%s\n\t", RESET);
+		printf("%sEnter a number:%s\n\t", CYAN, RESET);
+		printf("1: First Name\n\t2: Last Name");
 		printf("\n\t3: Current Project\n\t0: (exit)\n");
 		scanf("%i", &opt);
 	}
 	return (opt);
 }
 
-void	ft_search_io(FILE *fd)
+void		ft_search_io(FILE *fd)
 {
 	t_data	a;
 	int		found;
@@ -61,7 +63,7 @@ void	ft_search_io(FILE *fd)
 		printf("%s\tThere's no such student\n%s", RED, RESET);
 }
 
-void	ft_view(FILE *fd)
+void		ft_view(FILE *fd)
 {
 	t_data	a;
 	char	option[2];
