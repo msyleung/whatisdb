@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 14:32:22 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 17:53:18 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:16:38 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	print_menu_options(int option, FILE *fd)
 	while (option != 0)
 	{
 		printf("\n\t%s%sChoose one of", CYAN, BOLD_ON);
-		printf("the options:%s%s\n\t", BOLD_OFF, RESET);
+		printf("the options:%s\n\t", RESET);
 		printf("1: add/save\n\t2: view\n\t3: modify\n\t");
 		printf("4: delete\n\t0: exit\n\n");
 		scanf("%d", &option);

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:44:58 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 17:45:27 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:15:38 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_search_io(FILE *fd)
 	opt = 4;
 	while (opt != 1 && opt != 2 && opt != 3)
 	{
-		printf("\n\t%sHow do you want to look up the student?%s\n\t", CYAN BOLD_ON, RESET BOLD_OFF);
+		printf("\n\t%s%sHow do you want to look up the student?%s\n\t", CYAN, BOLD_ON, RESET);
 		printf("%sEnter a number:%s\n\t1: First Name\n\t2: Last Name", CYAN, RESET);
 		printf("\n\t3: Current Project\n\t0: (exit)\n");
 		scanf("%i", &opt);
@@ -69,11 +69,10 @@ void	ft_search_io(FILE *fd)
 
 void	ft_view(FILE *fd)
 {
-	t_data a;
-	char option[2];
+	t_data	a;
+	char	option[2];
 
-	printf("%sDo you want to view all?\nEnter: [Y/N]%s\n",
-			BOLD_ON, BOLD_OFF RESET);
+	printf("%sDo you want to view all?\nEnter: [Y/N]%s\n", BOLD_ON, RESET);
 	scanf("%s", option);
 	rewind(fd);
 	if (option[0] == 'Y' || option[0] == 'y')

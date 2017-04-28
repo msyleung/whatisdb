@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 13:06:11 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 16:09:12 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:13:58 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define WHITE	"\x1b[37m"
 # define RESET	"\x1b[0m"
 # define BOLD_ON	"\x1b[1m"
-# define BOLD_OFF	"\x1b[21m"
 # define DENIED	0
 # define ALLOWED 1
 
