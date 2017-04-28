@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 14:32:22 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 12:36:13 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 16:21:18 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	ft_add_save(FILE *fd)
 	t_data	a;
 
 	fseek(fd, 0, SEEK_END);
-	printf("Enter 50 characters of First Name:\n");
+	printf("%sEnter 50 characters of First Name:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf("%s", a.first_name);
-	printf("Enter Last name:\n");
+	printf("%sEnter Last name:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf("%s", a.last_name);
-	printf("Enter Year of birth:\n");
+	printf("%sEnter Year of birth:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf("%s", a.birthyear);
-	printf("Enter Phone number:\n");
+	printf("%sEnter Phone number:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf("%s", a.phonenumber);
-	printf("Enter Current project:\n");
+	printf("%sEnter Current project:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf ("%s", a.curr_proj);
 
 	fwrite(&a, sizeof(a), 1, fd);
@@ -40,6 +40,49 @@ void	ft_view_one(t_data a)
 	printf("Phone number: %s\n", a.phonenumber);
 	printf("Current project: %s", a.curr_proj);
 	printf("\n********************\n");
+}
+
+char	*ft_search_option(int opt)
+{
+	if (opt == 1)
+		return ("First Name");
+	else if (opt == 2)
+		return ("Last Name");
+	else
+		return ("Current Project");
+}
+
+void	ft_search_io(FILE *fd)
+{
+	t_data	a;
+	int		found;
+	int		opt;
+	char	input[50];
+
+	found = 0;
+	opt = 4;
+	while (opt != 1 && opt != 2 && opt != 3)
+	{
+		printf("\n\t%sHow do you want to look up the student?%s\n\t", CYAN BOLD_ON, RESET BOLD_OFF);
+		printf("%sEnter a number:%s\n\t1: First Name\n\t2: Last Name\n\t3: Current Project\n\t0: (exit)\n", CYAN, RESET);
+		scanf("%i", &opt);
+		if (opt == 0)
+			return ;
+	}
+	printf("\tEnter %s:\n", ft_search_option(opt));
+	scanf("%s", input);
+	while (fread(&a, sizeof(a), 1, fd) == 1)
+	{
+		if (((strcmp(input, a.first_name) == 0) && opt == 1) ||
+				((strcmp(input, a.last_name) == 0) && opt == 2) ||
+				((strcmp(input, a.curr_proj) == 0) && opt == 3))
+		{
+			ft_view_one(a);
+			found = 1;
+		}
+	}
+	if (found == 0)
+		printf("%s\tThere's no such student\n%s", RED, RESET);
 }
 
 void	ft_view(FILE *fd)
@@ -59,98 +102,7 @@ void	ft_view(FILE *fd)
 			ft_view_one(a);
 	}
 	else if (option[0] == 'N' || option[0] == 'n')
-	{
-		printf("%sEnter Last name of the student:%s\n",
-					BOLD_ON, BOLD_OFF RESET);
-		scanf("%s", last_name);
-		//printf("Entered last name:%s\n", last_name);
-		while (fread(&a, sizeof(a), 1, fd) == 1)
-		{
-			found = 0;
-			if (strcmp(last_name, a.last_name) == 0)
-			{
-				ft_view_one(a);
-				found = 1;
-				break ;
-			}
-		}
-		if (found == 0)
-			printf ("There's no such student\n");
-	}
-}
-
-void	ft_mod_option(t_data *a, FILE *fd, int option)
-{			
-	if (option == 1)
-		scanf("%s", a->first_name);
-	else if (option == 2)
-		scanf("%s", a->last_name);
-	else if (option == 3)
-		scanf("%s", a->birthyear);
-	else if (option == 4)
-		scanf("%s", a->phonenumber);
-	else if (option == 5)
-		scanf("%s", a->curr_proj);
-	else 
-		fwrite(a, sizeof(*a), 1, fd);
-}
-
-char *ft_option(int option)
-{
-	if (option == 1)
-		return ("First name");
-	else if (option == 2)
-		return ("Last name");
-	else if (option == 3)
-		return ("Year of birth");
-	else if (option == 4)
-		return ("Phone number");
-	else if (option == 5)
-		return ("Current project");
-//	else if (option == 0)
-	//	return ("Saved");
-	return ("option");
-}
-void	ft_mod(FILE *fd)
-{
-	t_data a;
-	int option;
-	int	found;
-	char last_name[50];
-
-	rewind(fd);
-	printf("\n%sEnter Last name of the student to modify:%s\n",
-					BOLD_ON, BOLD_OFF RESET);
-	scanf("%s", last_name);
-
-	while (fread(&a, sizeof(a), 1, fd) == 1)
-	{
-		found = 0;
-		if (strcmp(last_name, a.last_name) == 0)
-		{
-			printf("\n\t%sData of the student you're modifying:%s\n",
-					BOLD_ON, BOLD_OFF RESET);
-			ft_view_one(a);
-			fseek(fd, -sizeof(t_data), SEEK_CUR);
-			found = 1;
-			break ;
-		}
-	}
-	if (found)
-	{		
-		option = 1;
-		while (option)
-		{
-			printf("\n\t%sChoose a field to modify:%s\n\t 1: First name\n\t 2: Last name\n\t 3: Year of birth\n\t 4: Phone number\n\t 5: Current_project\n\t 0: Done\n\n", CYAN BOLD_ON, BOLD_OFF RESET);
-			scanf("%d", &option);
-			printf("\n%sEnter new %s:%s\n",BOLD_ON, ft_option(option), BOLD_OFF RESET);
-			if (option < 0 || option > 5)
-				continue ;
-			ft_mod_option(&a, fd, option);
-		}
-	}
-	if (found == 0)
-		printf ("There's no such student\n");
+		ft_search_io(fd);
 }
 
 int		main(void)
@@ -159,6 +111,7 @@ int		main(void)
 	int	authorized;
 	FILE *fd;
 
+	ft_welcome_msg();
 	if (!(authorized = ft_secure()))
 		return (0);
 	fd = fopen("file.txt", "r+");

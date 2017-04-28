@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_welcome_msg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/24 15:25:35 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 16:09:49 by sleung           ###   ########.fr       */
+/*   Created: 2017/04/27 15:52:12 by sleung            #+#    #+#             */
+/*   Updated: 2017/04/27 16:01:17 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int		ft_error_security(char *msg)
+void	ft_welcome_msg(void)
 {
-	printf("%s", msg);
-	return (0);
-}
-
-void	ft_error(int opt)
-{
-	printf("You entered: '%i' || Error: Invalid usage.\n", opt);
+	printf("\t%s======================================\n", WHITE);
+	printf("\t#          Student Database          #\n");
+	printf("\t%s======================================\n", WHITE);
 }

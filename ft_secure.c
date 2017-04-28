@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 12:11:05 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 12:38:12 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 16:08:21 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ int	ft_secure(void)
 
 	p.username = "Root";
 	p.password = "Root";
-	printf("\n\t%s======== Unauthorized Access =======%s\n", RED BOLD_ON, RESET BOLD_OFF);
-	printf("\n\tEnter Username:\n\t");
-	scanf("%s", u_input);
-	printf("\tEnter Password:\n\t");
-	scanf("%s", p_input);
 	authorized = DENIED;
+	printf("\n\t\t%sUnauthorized Access%s\n", RED BOLD_ON, RESET BOLD_OFF);
+	printf("\n\tUsername: ");
+	scanf("%s", u_input);
 	if (strcmp(u_input, p.username) != 0)
-		printf("\tUser not found\n");
-	else if ((strcmp(u_input, p.username) == 0) && (strcmp(p.password, p_input) != 0))
-		printf("\tIncorrect Password!\n");
+		return (ft_error_security("\tUser not found\n"));
+	printf("\tPassword: ");
+	scanf("%s", p_input);
+	if (strcmp(p.password, p_input) != 0)
+		return (ft_error_security("\tIncorrect Password!\n"));
 	else if ((strcmp(u_input, p.username) == 0) && (strcmp(p.password, p_input) == 0))
 	{
 		authorized = ALLOWED;
-		printf("\n\t%s======= Access Granted =======%s\n", GREEN BOLD_ON, RESET BOLD_OFF);
+		printf("\n\t\t%sAccess Granted%s\n", GREEN BOLD_ON, RESET BOLD_OFF);
 	}
 	return (authorized);
 }
