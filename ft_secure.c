@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 12:11:05 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 18:17:10 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:20:36 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_secure(void)
 	else if ((strcmp(u_input, p.username) == 0) && (strcmp(p.password, p_input) == 0))
 	{
 		authorized = ALLOWED;
-		printf("\n\t\t%sAccess Granted%s\n", GREEN, BOLD_ON, RESET);
+		printf("\n\t\t%s%sAccess Granted%s\n", GREEN, BOLD_ON, RESET);
 	}
 	return (authorized);
 }

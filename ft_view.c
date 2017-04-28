@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:44:58 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 18:15:38 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:26:33 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void	ft_view_one(t_data a)
 	printf("\n********************\n");
 }
 
-char	*ft_search_option(int opt)
+static int	ft_search_opt(int opt)
 {
-	if (opt == 1)
-		return ("First Name");
-	else if (opt == 2)
-		return ("Last Name");
-	else
-		return ("Current Project");
+	while (opt != 1 && opt != 2 && opt != 3 && opt != 0)
+	{
+		printf("\n\t%s%sHow do you want to look up the student?%s\n\t", CYAN, BOLD_ON, RESET);
+		printf("%sEnter a number:%s\n\t1: First Name\n\t2: Last Name", CYAN, RESET);
+		printf("\n\t3: Current Project\n\t0: (exit)\n");
+		scanf("%i", &opt);
+	}
+	return (opt);
 }
 
 void	ft_search_io(FILE *fd)
@@ -41,17 +43,9 @@ void	ft_search_io(FILE *fd)
 	char	input[50];
 
 	found = 0;
-	opt = 4;
-	while (opt != 1 && opt != 2 && opt != 3)
-	{
-		printf("\n\t%s%sHow do you want to look up the student?%s\n\t", CYAN, BOLD_ON, RESET);
-		printf("%sEnter a number:%s\n\t1: First Name\n\t2: Last Name", CYAN, RESET);
-		printf("\n\t3: Current Project\n\t0: (exit)\n");
-		scanf("%i", &opt);
-		if (opt == 0)
-			return ;
-	}
-	printf("\tEnter %s:\n", ft_search_option(opt));
+	if (!(opt = ft_search_opt(4)))
+		return ;
+	printf("\tEnter %s:\n", opt != 3 ? ft_option(opt) : "Current Project");
 	scanf("%s", input);
 	while (fread(&a, sizeof(a), 1, fd) == 1)
 	{
