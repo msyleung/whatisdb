@@ -27,7 +27,6 @@ void	ft_add_save(FILE *fd)
 	scanf("%s", a.phonenumber);
 	printf("%sEnter Current project:%s\n", BOLD_ON, BOLD_OFF RESET);
 	scanf ("%s", a.curr_proj);
-
 	fwrite(&a, sizeof(a), 1, fd);
 }
 
@@ -88,9 +87,7 @@ void	ft_search_io(FILE *fd)
 void	ft_view(FILE *fd)
 {
 	t_data a;
-	int	found;
 	char option[2];
-	char last_name[50];
 
 	printf("%sDo you want to view all?\nEnter: [Y/N]%s\n",
 					BOLD_ON, BOLD_OFF RESET);
@@ -126,7 +123,6 @@ int		main(void)
 			ft_view(fd);
 		else if (option == 3)
 			ft_mod(fd);
-
 		else if (option == 4)
 			ft_del(fd);
 		else if (option == 0)
