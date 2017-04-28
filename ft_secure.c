@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 12:11:05 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/27 18:20:36 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 18:29:31 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_secure(void)
 	scanf("%s", p_input);
 	if (strcmp(p.password, p_input) != 0)
 		return (ft_error_security("\tIncorrect Password!\n"));
-	else if ((strcmp(u_input, p.username) == 0) && (strcmp(p.password, p_input) == 0))
+	else if ((strcmp(u_input, p.username) == 0)
+			&& (strcmp(p.password, p_input) == 0))
 	{
 		authorized = ALLOWED;
 		printf("\n\t\t%s%sAccess Granted%s\n", GREEN, BOLD_ON, RESET);
