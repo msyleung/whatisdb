@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 14:40:34 by sleung            #+#    #+#             */
-/*   Updated: 2017/04/25 17:23:47 by sleung           ###   ########.fr       */
+/*   Updated: 2017/04/27 17:40:39 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_del_get_input(t_data *to_del)
 	*to_del = x;
 }
 
-void	ft_del(FILE *fp)
+void		ft_del(FILE *fp)
 {
 	FILE	*ft;
 	t_data	d;
@@ -39,12 +39,11 @@ void	ft_del(FILE *fp)
 		while (fread(&d, sizeof(d), 1, fp) == 1)
 		{
 			if ((strcmp(d.last_name, to_del.last_name) != 0) ||
-					strcmp(d.phonenumber, to_del.phonenumber) != 0)
-					fwrite(&d, sizeof(d), 1, ft);	//if curr d != to_del data, copy curr d to ft
+					(strcmp(d.phonenumber, to_del.phonenumber) != 0))
+				fwrite(&d, sizeof(d), 1, ft);
 		}
 		fclose(fp);
 		fclose(ft);
-		// how to remove file?
 		remove("file.txt");
 		rename("tmp.dat", "file.txt");
 		fp = fopen("file.txt", "rb+");
