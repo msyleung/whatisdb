@@ -6,11 +6,42 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/02 15:46:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/02 15:55:13 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	add_row(t_schema *a, FILE fd)
+{
+	int buff_size;
+	char buff[SIZE * a->coloms + 1];
+	char tmp[SIZE + 1];
+	char delete_me[SIZE * a->coloms + 1];
+	int i;
+
+	i = 0;
+	buff_size = a->coloms * SIZE;
+	while (i < a->coloms)
+	{
+		printf("Enter the %s:\n", a->names[i]);
+		scanf("%s", tmp);
+		memcpy(&buff[i * (SIZE)], tmp, 50 );
+		i++;
+	}
+//	buff[buff_size] = '\0';
+fwrite(buff, buff_size, 1, &fd);
+
+	//testing
+/*fread(delete_me, buff_size, 1, &fd);
+i = 0;
+while (i < a->coloms)
+	{
+		printf("Result:%s\n", &buff[i * SIZE]);
+		i++;
+	}
+*/
+}
 
 void	get_schema(FILE *fd, t_schema *a)
 {
@@ -90,7 +121,10 @@ int		main(void)
 		printf("\n1: add\n2: read\n9: clear\n0: exit\n");
 		scanf("%i", &option);
 		if (option == 1)
+		{
 			get_schema(fd, &a);
+			add_row(&a, *fd);
+		}
 		else if (option == 2)
 			ft_read_file(fd);
 		else if (option == 3)
@@ -99,5 +133,10 @@ int		main(void)
 			clear_screen();
 		printf("\n");
 	}
+/*	while (i < a.coloms)
+	{
+		printf("%s\n", a.names[i]);
+		i++;
+	}*/
 	return (0);
 }

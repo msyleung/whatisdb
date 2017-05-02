@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/02 14:25:17 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/02 15:55:53 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct	s_schema
 {
 	int 		coloms;
 	char		**names;
-//	int			*types;
 }				t_schema;
 
 
