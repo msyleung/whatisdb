@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/02 13:08:44 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/02 14:25:17 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@
 # define DENIED	0
 # define ALLOWED 1
 
-# define SIZE 50;
+# define SIZE 50
 
 typedef struct	s_schema
 {
 	int 		coloms;
 	char		**names;
-	int			*types;
+//	int			*types;
 }				t_schema;
 
 
