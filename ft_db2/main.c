@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 10:50:36 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/03 11:17:09 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,51 +49,6 @@ void	add_row(t_schema *a, FILE *fd)
 //	view_all(&fd);
 
 }
-
-void	view_one(t_schema *a, char *str)
-{
-	int i;
-
-	i = 0;
-	printf("HERE\n");
-
-	while (i < a->coloms)
-	{
-		printf("%s:", a->names[i]);
-		printf(" %s\n", &str[i * SIZE]);
-		i++;
-	}
-}
-
-void	view_all(FILE *fd)
-{
-	t_schema a;
-	int read;
-
-	a = ft_read_schema(fd);
-	int i = 0;
-	rewind(fd);
-	printf("INSIDE VIEW_ALL\n");
-	printf("schema:\n");
-	while (i < a.coloms)
-	{
-		printf("%s\n", a.names[i]);
-		i++;
-	}
-//	printf("HERE____\n");
-	char buff[SIZE * a.coloms];
-
-	fseek(fd, a.coloms * SIZE + sizeof(int), SEEK_CUR);
-//	printf("fread=%zu\n", fread(buff, SIZE * a.coloms, 1, fd) );
-	while ((read = fread(buff, SIZE * a.coloms, 1, fd)) == 1)
-	{
-		printf("\n!!!!read=%i\n", read);
-		view_one(&a, buff);
-	}
-	printf("read=%i\n", i);
-	printf("buf=%s\n", buff);
-}
-
 
 
 void	get_schema(FILE *fd, t_schema *a)
