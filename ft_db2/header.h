@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/02 15:55:53 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/03 10:08:47 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ typedef struct	s_schema
 	int 		coloms;
 	char		**names;
 }				t_schema;
+
+t_schema		ft_read_schema(FILE *fd);
+void			view_all(FILE *fd);
 
 
 #endif
