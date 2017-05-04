@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 16:05:09 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/03 18:08:30 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct	s_schema
 
 t_schema		ft_read_schema(FILE *fd);
 void			ft_print_schema(t_schema *a);
-void			view_all(FILE *fd);
+void			view_all(FILE *fd, t_schema *a);
 void			clear_screen(void);
-
+void			search(t_schema *a, FILE *fd);
+void			view_columns(t_schema *a);
 #endif
