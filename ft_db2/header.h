@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 16:05:09 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/03 17:31:42 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@
 
 typedef struct	s_schema
 {
-	int 		coloms;
+	int			coloms;
 	char		**names;
 }				t_schema;
 
-t_schema		ft_read_schema(FILE *fd);
-void			ft_print_schema(t_schema *a);
+void			get_schema(t_schema *a, FILE *fd);
+t_schema		read_schema(FILE *fd);
+void			add_row(t_schema *a, FILE *fd);
+void			add_columns(t_schema *a, FILE *fd, char *db);
+void			copy_rows(t_schema *a, FILE *fd, int trash, FILE *ft);
+void			print_schema(t_schema *a);
+void			view_one(t_schema *a, char *str);
 void			view_all(FILE *fd);
 void			clear_screen(void);
 
