@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 12:44:19 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/04 16:36:31 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,42 +18,52 @@ int		main(void)
 	FILE		*fd;
 	t_schema	a;
 	int			option;
+	int 		file_size;
 
 	printf("\nEnter the name of the DB:\n");
 	scanf("%s", db_name);
 	fd = fopen(db_name, "a+");
+	fseek(fd, 0, SEEK_END);
+	file_size = ftell(fd);
+	if (!file_size)
+	{
+		printf("\n Create schema of new DB\n");
+		a.names = 0;
+		a.coloms = 0;
+		get_schema(&a, fd);
+		print_schema(&a);
+	}
+
 	printf("Which option do you want?\n");
+	a = read_schema(fd);
 	while (option != 0)
 	{
-		printf("\n1: create schema and add rows \n2: view all\n");
-		printf("4: add new row\n5: add new columns\n6: search\n");
-		printf("7: modify record\n8: delete record\n9: clear\n0: exit\n");
+		printf("Change schema:\n----------\n");
+		printf("1: add column\n2: delete column\n");
 
+		printf("View:\n-----------\n");
+		printf("3: view all\n4: search\n");
+
+		printf("Modify data:\n-------------\n");
+		printf("5: add new record\n6: modify record\n7: delete record\n");
+
+		printf("---------------\n8: Clear the screen\n0: exit\n");
 		scanf("%i", &option);
-		if (option != 1)
-			a = read_schema(fd);
-		if (option == 1)
-		{
-			a.names = 0;
-			a.coloms = 0;
-			get_schema(&a, fd);
-			add_row(&a, fd);
-		}
-		else if (option == 2)
+		if (option == 3)
 			view_all(fd, &a);
-		//		else if (option == 3)
-		//			del_columns(fd);
-		else if (option == 4)
-			add_row(&a, fd);
+		else if (option == 2)
+			del_column(&a, fd, db_name);
 		else if (option == 5)
+			add_row(&a, fd);
+		else if (option == 1)
 			add_columns(&a, fd, db_name);
-		else if (option == 6)
+		else if (option == 4)
 			search(&a, fd);
-		else if (option == 7)
+		else if (option == 6)
 			mod_row(&a, fd, db_name);
-		else if (option == 8)
+		else if (option == 7)
 			del_row(&a, fd, db_name);
-		else if (option == 9)
+		else if (option == 8)
 			clear_screen();
 		printf("\n");
 	}

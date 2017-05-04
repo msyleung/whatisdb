@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:20:04 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 12:20:28 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/04 15:51:58 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	mod_options(t_schema *a, FILE *fd, char *buff, int num)
 	view_one(a, buff, num);
 	printf("Enter the number of the colunm you want to modify:\n");
 	view_columns(a);
+	fseek(fd, -(SIZE * a->coloms), SEEK_CUR);
 	printf("0: Back\n");
 	scanf("%i", &option);
 	if (option)
@@ -46,12 +47,15 @@ void	mod_row(t_schema *a, FILE *fd, char *db_name)
 	fclose(fd);
 	fd = fopen(db_name, "r+");
 	fseek(fd, sizeof(int) + SIZE * a->coloms, SEEK_CUR);
-	while ((fread(buff, SIZE * a->coloms, 1, fd) == 1) && ++i != option)
+	while (fread(buff, SIZE * a->coloms, 1, fd) == 1)
 	{
 		if (i == option - 1)
+		{
 			flag = 1;
+			break ;
+		}
+		i++;
 	}
-	fseek(fd, -sizeof(buff), SEEK_CUR);
 	if (flag == 1)
 		mod_options(a, fd, buff, option);
 	else

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:43:30 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/03 17:40:43 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/04 14:19:30 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	add_cols_help(t_schema *a, int trash, FILE *fd, FILE *ft)
 		fwrite(a->names[i], sizeof(char) * SIZE, 1, ft);
 		i++;
 	}
-	print_schema(a);
 	copy_rows(a, fd, trash, ft);
+	view_all(ft, a);
 	fclose(fd);
 	fclose(ft);
 }
