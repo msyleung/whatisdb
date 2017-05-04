@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_view.c                                          :+:      :+:    :+:   */
+/*   view_schema.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 11:15:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 18:14:41 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/04 11:43:40 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_schema(t_schema *a)
 	int space;
 
 	i = 0;
+	printf("| # ");
 	while (i < a->coloms)
 	{
 		j = 0;
@@ -41,13 +42,14 @@ void	print_schema(t_schema *a)
 	printf("\n");
 }
 
-void	view_one(t_schema *a, char *str)
+void	view_one(t_schema *a, char *str, int num)
 {
 	int i;
 	int j;
 	int len;
 
 	i = 0;
+	printf("| %i ", num);
 	while (i < a->coloms)
 	{
 		j = 0;
@@ -72,7 +74,10 @@ void	view_all(FILE *fd, t_schema *a)
 	print_schema(a);
 	fseek(fd, a->coloms * SIZE + sizeof(int), SEEK_CUR);
 	while ((read = fread(buff, SIZE * a->coloms, 1, fd)) == 1)
-		view_one(a, buff);
+	{
+		view_one(a, buff, i + 1 );
+		i++;
+	}
 }
 
 void	view_columns(t_schema *a)
@@ -91,9 +96,11 @@ void	search(t_schema *a, FILE *fd)
 {
 	int		i;
 	int		option;
+	int		count;
 	char	buff[SIZE * a->coloms];
 	char	search[SIZE];
 
+	count = 0;
 	printf("Choose the number of the key you want to search by:\n");
 	view_columns(a);
 	scanf("%i", &option);
@@ -104,13 +111,16 @@ void	search(t_schema *a, FILE *fd)
 	fseek(fd, sizeof(int) + SIZE * a->coloms, SEEK_CUR);
 	i = 0;
 	while (fread(buff, SIZE * a->coloms, 1, fd) == 1)
+	{
+		count++;
 		if (strcmp(&buff[SIZE * option], search) == 0)
 		{
 			i++;
 			if (i == 1)
 				print_schema(a);
-			view_one(a, buff);
+			view_one(a, buff, count);
 		}
+	}
 	if (i == 0)
 		printf("\n '%s' not found", search);
 }
