@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 17:26:16 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/03 18:15:36 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int		main(void)
 	while (option != 0)
 	{
 		printf("\n1: create schema and add rows \n2: view all\n");
-		printf("4: add new row\n5: add new columns\n9: clear\n0: exit\n");
+		printf("4: add new row\n5: add new columns\n6: search\n9: clear\n0: exit\n");
 		scanf("%i", &option);
+		if (option != 1)
+			a = read_schema(fd);
 		if (option == 1)
 		{
 			a.names = 0;
@@ -37,19 +39,15 @@ int		main(void)
 			add_row(&a, fd);
 		}
 		else if (option == 2)
-			view_all(fd);
+			view_all(fd, &a);
 //		else if (option == 3)
-//			ft_del_columns(fd);
+//			del_columns(fd);
 		else if (option == 4)
-		{
-			a = read_schema(fd);
 			add_row(&a, fd);
-		}
 		else if (option == 5)
-		{
-			a = read_schema(fd);
 			add_columns(&a, fd, db_name);
-		}
+		else if (option == 6)
+			search(&a, fd);
 		else if (option == 9)
 			clear_screen();
 		printf("\n");

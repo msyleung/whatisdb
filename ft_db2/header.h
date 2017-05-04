@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/03 17:31:42 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/03 18:14:02 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void			add_columns(t_schema *a, FILE *fd, char *db);
 void			copy_rows(t_schema *a, FILE *fd, int trash, FILE *ft);
 void			print_schema(t_schema *a);
 void			view_one(t_schema *a, char *str);
-void			view_all(FILE *fd);
+void			view_all(FILE *fd, t_schema *a);
 void			clear_screen(void);
-
+void			search(t_schema *a, FILE *fd);
+void			view_columns(t_schema *a);
 #endif
