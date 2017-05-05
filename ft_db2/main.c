@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 16:36:31 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/04 17:59:02 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ int		main(void)
 	a = read_schema(fd);
 	while (option != 0)
 	{
-		printf("Change schema:\n----------\n");
+		printf("\n-------------------\nChange schema:\n-------------------\n");
 		printf("1: add column\n2: delete column\n");
 
-		printf("View:\n-----------\n");
+		printf("\n-------------------\nView:\n-------------------\n");
 		printf("3: view all\n4: search\n");
 
-		printf("Modify data:\n-------------\n");
+		printf("\n-------------------\nModify data:\n-------------------\n");
 		printf("5: add new record\n6: modify record\n7: delete record\n");
 
-		printf("---------------\n8: Clear the screen\n0: exit\n");
+		printf("\n-------------------\n8: Clear the screen\n0: exit\n");
 		scanf("%i", &option);
 		if (option == 3)
 			view_all(fd, &a);

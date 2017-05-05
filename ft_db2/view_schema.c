@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 11:15:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 11:43:40 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/04 17:49:44 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	view_one(t_schema *a, char *str, int num)
 		j = 0;
 		printf("| %s", &str[i * SIZE]);
 		len = strlen(&str[i * SIZE]);
-		while (j++ < SIZE / 2 - len)
+		while (j++ < (SIZE / 2 - len))
 			printf(" ");
 		printf("|");
 		i++;
