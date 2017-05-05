@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:27:26 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 14:02:26 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 15:25:40 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	get_file(void)
 	while ((myfile = readdir(mydir)) != NULL)
 	{
 		if (myfile->d_name[0] != '.' && strcmp(myfile->d_name, "Makefile") != 0
-				&& strcmp(myfile->d_name, "whatisdb") != 0)
+				&& strcmp(myfile->d_name, "whatisdb") != 0
+				&& strcmp(myfile->d_name, "author") != 0)
 		{
 			if ((imanidiot = opendir(myfile->d_name)) != NULL)
 				closedir(imanidiot);
