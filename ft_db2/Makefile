@@ -6,7 +6,7 @@
 #    By: sleung <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/01 10:15:53 by sleung            #+#    #+#              #
-#    Updated: 2017/05/05 12:48:20 by sleung           ###   ########.fr        #
+#    Updated: 2017/05/05 13:40:51 by sleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_FILES = add_columns.c \
 			copy_rows.c \
 			del_column.c \
 			del_row.c \
+			get_file.c \
 			get_schema.c \
 			main.c \
 			mod_row.c \

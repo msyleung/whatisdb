@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 14:15:22 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 13:42:01 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <assert.h>
 # include <ctype.h>
+# include <dirent.h>
 # include <errno.h>
 # include <float.h>
 # include <limits.h>
@@ -64,4 +65,5 @@ void			view_columns(t_schema *a);
 void			mod_row(t_schema *a, FILE *fd, char *db_name);
 void			del_row(t_schema *a, FILE *fd, char *db_name);
 void			del_column(t_schema *a, FILE *fd, char *db_name);
+void			get_file(void);
 #endif
