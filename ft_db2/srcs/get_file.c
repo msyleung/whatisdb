@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:27:26 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 15:31:59 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 15:53:36 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		get_file(void)
 
 	yes = 0;
 	mydir = opendir(".");
-	printf("Current databases available:\n");
+	printf("%s\nCurrent databases available:%s\n", B_ON, RES);
 	while ((myfile = readdir(mydir)) != NULL)
 	{
 		get_file_help(myfile->d_name, &yes);

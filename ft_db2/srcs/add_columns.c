@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:43:30 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/04 14:19:30 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 15:54:34 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		add_columns(t_schema *a, FILE *fd, char *db)
 	ft = fopen("tmp.dat", "a+");
 	i = a->coloms;
 	trash = i;
-	printf("Enter number of new columns?\n");
+	printf("%sEnter number of new columns?%s\n", B_ON, RES);
 	scanf("%i", &(a->coloms));
 	printf("Total columns: %i\n", i + a->coloms);
 	a->names = (char **)realloc(a->names, (i + a->coloms) * sizeof(char *));

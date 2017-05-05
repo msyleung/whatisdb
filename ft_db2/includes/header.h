@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 13:42:01 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 15:50:19 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@
 # include <time.h>
 
 # define RED	"\x1b[31m"
-# define GREEN	"\x1b[32m"
-# define YELLOW	"\x1b[33m"
+# define GRE	"\x1b[32m"
+# define YEL	"\x1b[33m"
 # define BLUE	"\x1b[34m"
-# define MAGENTA	"\x1b[95m"
-# define CYAN	"\x1b[36m"
-# define WHITE	"\x1b[37m"
-# define RESET	"\x1b[0m"
-# define BOLD_ON	"\x1b[1m"
+# define MAG	"\x1b[95m"
+# define CYA	"\x1b[36m"
+# define WHI	"\x1b[37m"
+# define RES	"\x1b[0m"
+# define B_ON	"\x1b[1m"
 # define DENIED	0
 # define ALLOWED 1
 
