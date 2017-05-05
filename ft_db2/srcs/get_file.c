@@ -6,15 +6,32 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:27:26 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 15:25:40 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 15:31:59 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	get_file(void)
+static void	get_file_help(char *filename, int *yes)
 {
 	DIR				*imanidiot;
+
+	if (filename[0] != '.' && strcmp(filename, "Makefile") != 0
+			&& strcmp(filename, "whatisdb") != 0
+			&& strcmp(filename, "author") != 0)
+	{
+		if ((imanidiot = opendir(filename)) != NULL)
+			closedir(imanidiot);
+		else
+		{
+			printf("| %s ", filename);
+			*yes = 1;
+		}
+	}
+}
+
+void		get_file(void)
+{
 	DIR				*mydir;
 	struct dirent	*myfile;
 	int				yes;
@@ -24,18 +41,7 @@ void	get_file(void)
 	printf("Current databases available:\n");
 	while ((myfile = readdir(mydir)) != NULL)
 	{
-		if (myfile->d_name[0] != '.' && strcmp(myfile->d_name, "Makefile") != 0
-				&& strcmp(myfile->d_name, "whatisdb") != 0
-				&& strcmp(myfile->d_name, "author") != 0)
-		{
-			if ((imanidiot = opendir(myfile->d_name)) != NULL)
-				closedir(imanidiot);
-			else
-			{
-				printf("| %s ", myfile->d_name);
-				yes = 1;
-			}
-		}
+		get_file_help(myfile->d_name, &yes);
 	}
 	if (yes)
 		printf("|\n");
