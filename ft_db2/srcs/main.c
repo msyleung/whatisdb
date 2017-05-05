@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 16:33:30 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 17:59:02 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 12:52:03 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		main(void)
 	int			option;
 	int 		file_size;
 
+	option = 42;
 	printf("\nEnter the name of the DB:\n");
 	scanf("%s", db_name);
 	fd = fopen(db_name, "a+");

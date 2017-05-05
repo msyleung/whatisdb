@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_rows.c                                        :+:      :+:    :+:   */
+/*   read_schema.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 17:04:50 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/03 17:32:35 by sleung           ###   ########.fr       */
+/*   Created: 2017/05/03 17:22:04 by sleung            #+#    #+#             */
+/*   Updated: 2017/05/05 12:52:42 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void copy_rows(t_schema *a, FILE *fd, int trash, FILE *ft)
+t_schema	read_schema(FILE *fd)
 {
-	char buff[a->coloms * SIZE];
-	int i = 0;
-	t_schema t;
+	int			i;
+//	char		b[50];
+	int			num;
+	t_schema	a;
 
 	rewind(fd);
-	fseek(fd, 4 + trash * SIZE, SEEK_CUR);
-	while (fread(buff, trash * SIZE, 1, fd) == 1)
+	i = 0;
+	fread(&num, sizeof(int), 1, fd);
+	a.coloms = num;
+	a.names = (char **)malloc(sizeof(char *) * a.coloms);
+	while (i < a.coloms)
 	{
-		bzero(&buff[trash * SIZE], (a->coloms - trash) * SIZE);
-		fseek(ft, 0, SEEK_END);
-		fwrite(buff, a->coloms * SIZE, 1, ft);
+		a.names[i] = (char *)malloc(SIZE);
+		fread(a.names[i], SIZE, 1, fd);
+		i++;
 	}
+	return (a);
 }

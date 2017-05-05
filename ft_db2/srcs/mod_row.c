@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:20:04 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 15:51:58 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 12:52:21 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	mod_options(t_schema *a, FILE *fd, char *buff, int num)
 {
 	int		option;
-	char	tmp[SIZE + 1];
+//	char	tmp[SIZE + 1];
 
 	option = 1;
 	print_schema(a);

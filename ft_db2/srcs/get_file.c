@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_schema.c                                      :+:      :+:    :+:   */
+/*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 17:22:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/03 17:23:04 by sleung           ###   ########.fr       */
+/*   Created: 2017/05/05 13:27:26 by sleung            #+#    #+#             */
+/*   Updated: 2017/05/05 13:33:00 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_schema	read_schema(FILE *fd)
+void	get_file(void)
 {
-	int			i;
-	char		b[50];
-	int			num;
-	t_schema	a;
 
-	rewind(fd);
-	i = 0;
-	fread(&num, sizeof(int), 1, fd);
-	a.coloms = num;
-	a.names = (char **)malloc(sizeof(char *) * a.coloms);
-	while (i < a.coloms)
-	{
-		a.names[i] = (char *)malloc(SIZE);
-		fread(a.names[i], SIZE, 1, fd);
-		i++;
-	}
-	return (a);
 }
