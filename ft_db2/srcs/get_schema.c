@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 17:10:33 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 17:49:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:46:40 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_schema(t_schema *a, FILE *fd)
 		{
 			a->names[i] = (char *)malloc(SIZE);
 			printf("\n%sEnter name of the column #%i:%s\n", B_ON, i + 1, RES);
-			scanf("%s", a->names[i]);
+			a->names[i] = memcpy(a->names[i], getline_yay(), SIZE);
 			i++;
 		}
 		i = 0;
