@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 13:11:12 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 16:43:55 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 17:17:02 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	del_column(t_schema *a, FILE *fd, char *db)
 	printf("Choose the number of the colunm you want to delete:\n");
 	view_columns(a);
 	scanf("%i", &opt);
+	if (opt == 0)
+		return ;
 	a->coloms--;
 	fwrite(&a->coloms, sizeof(int), 1, ft);
 	while (i < a->coloms + 1)
@@ -67,5 +69,4 @@ void	del_column(t_schema *a, FILE *fd, char *db)
 	remove(db);
 	rename("tmp.dat", db);
 	fd = fopen(db, "r+");
-	printf("\nDONE!\n");
 }
