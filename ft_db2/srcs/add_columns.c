@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:43:30 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 15:54:34 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:18:26 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,28 @@ static void	add_cols_help(t_schema *a, int trash, FILE *fd, FILE *ft)
 	fclose(ft);
 }
 
+char	*getline_yay(void)
+{
+	char	*str;
+	size_t	size;
+
+	size = 0;
+	str = (char *)malloc(sizeof(char) * SIZE + 1);
+	memset(str, '\0', SIZE + 1);
+	str[0] = '\n';
+	while (str[0] == '\n')
+		getline(&str, &size, stdin);
+	str[strlen(str) - 1] = '\0';
+	if (strlen(str) > 50)
+	{
+		printf("BAAAD! Try again\n");
+		free(str);
+		str = NULL;
+		return (getline_yay());
+	}
+	return (str);
+}
+
 void		add_columns(t_schema *a, FILE *fd, char *db)
 {
 	FILE	*ft;
@@ -44,15 +66,15 @@ void		add_columns(t_schema *a, FILE *fd, char *db)
 	trash = i;
 	printf("%sEnter number of new columns?%s\n", B_ON, RES);
 	scanf("%i", &(a->coloms));
-	printf("Total columns: %i\n", i + a->coloms);
 	a->names = (char **)realloc(a->names, (i + a->coloms) * sizeof(char *));
 	a->coloms = i + a->coloms;
-	printf("columns=%i\n", a->coloms);
 	while (i < a->coloms)
 	{
 		a->names[i] = (char *)malloc(SIZE);
-		printf("\nEnter name of the colom #%i:\n", i + 1);
-		scanf("%s", a->names[i]);
+		printf("\nEnter name of the column #%i:\n", i + 1);
+//		scanf("%s", a->names[i]);
+		a->names[i] = memcpy(a->names[i], getline_yay(), SIZE);
+//		printf("a->names[i]: [%s]\n", a->names[i]);
 		i++;
 	}
 	add_cols_help(a, trash, fd, ft);
