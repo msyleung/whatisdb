@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 13:11:12 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 17:20:21 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:34:17 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	del_copy_rows(FILE *fd, FILE *ft, t_schema *a, int opt)
 	{
 		j = 0;
 		i = 0;
-	//	printf("HERE!\n");
 		while (i < a->coloms + 1)
 		{
 			if (i != opt - 1)
@@ -37,6 +36,7 @@ void	del_copy_rows(FILE *fd, FILE *ft, t_schema *a, int opt)
 		}
 		fseek(ft, 0, SEEK_END);
 		fwrite(buff_ft, sizeof(buff_ft), 1, ft);
+		*a = read_schema(ft);
 	}
 }
 
@@ -46,7 +46,7 @@ void	del_column(t_schema *a, FILE *fd, char *db)
 	int		i;
 	FILE	*ft;
 
-	i = 0;
+	i = -1;
 	ft = fopen("tmp.dat", "a+");
 	printf("Choose the number of the colunm you want to delete:\n");
 	view_columns(a);
@@ -55,15 +55,13 @@ void	del_column(t_schema *a, FILE *fd, char *db)
 		return ;
 	a->coloms--;
 	fwrite(&a->coloms, sizeof(int), 1, ft);
-	while (i < a->coloms + 1)
+	while (++i < a->coloms + 1)
 	{
 		fseek(ft, 0, SEEK_END);
 		if (i != (opt - 1))
 			fwrite(a->names[i], SIZE, 1, ft);
-		i++;
 	}
 	del_copy_rows(fd, ft, a, opt);
-	*a = read_schema(ft);
 	fclose(fd);
 	fclose(ft);
 	remove(db);

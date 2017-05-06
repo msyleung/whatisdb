@@ -6,16 +6,15 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 17:04:50 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 12:52:57 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:37:43 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void copy_rows(t_schema *a, FILE *fd, int trash, FILE *ft)
+void	copy_rows(t_schema *a, FILE *fd, int trash, FILE *ft)
 {
 	char buff[a->coloms * SIZE];
-//	t_schema t;
 
 	rewind(fd);
 	fseek(fd, 4 + trash * SIZE, SEEK_CUR);

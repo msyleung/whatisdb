@@ -6,13 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:43:30 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 17:44:04 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:38:36 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static void	add_cols_help(t_schema *a, int trash, FILE *fd, FILE *ft)
+static void		add_cols_help(t_schema *a, int trash, FILE *fd, FILE *ft)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ static void	add_cols_help(t_schema *a, int trash, FILE *fd, FILE *ft)
 	fclose(ft);
 }
 
-char	*getline_yay(void)
+char			*getline_yay(void)
 {
 	char	*str;
 	size_t	size;
@@ -55,7 +55,7 @@ char	*getline_yay(void)
 	return (str);
 }
 
-void		add_columns(t_schema *a, FILE *fd, char *db)
+void			add_columns(t_schema *a, FILE *fd, char *db)
 {
 	FILE	*ft;
 	int		i;
@@ -72,9 +72,7 @@ void		add_columns(t_schema *a, FILE *fd, char *db)
 	{
 		a->names[i] = (char *)malloc(SIZE);
 		printf("\n%sEnter name of the column #%i:%s\n", B_ON, i + 1, RES);
-//		scanf("%s", a->names[i]);
 		a->names[i] = memcpy(a->names[i], getline_yay(), SIZE);
-//		printf("a->names[i]: [%s]\n", a->names[i]);
 		i++;
 	}
 	add_cols_help(a, trash, fd, ft);
