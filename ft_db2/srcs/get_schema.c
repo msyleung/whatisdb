@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 17:10:33 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/03 17:12:21 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:49:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	get_schema(t_schema *a, FILE *fd)
 	i = 0;
 	if (a->names == 0)
 	{
-		printf("\nEnter number of columns:\n");
+		printf("\n%sEnter number of columns:%s\n", B_ON, RES);
 		scanf("%i", &(a->coloms));
 		a->names = (char **)malloc(sizeof(char *) * a->coloms);
 		while (i < a->coloms)
 		{
 			a->names[i] = (char *)malloc(SIZE);
-			printf("\nEnter name of the column #%i:\n", i + 1);
+			printf("\n%sEnter name of the column #%i:%s\n", B_ON, i + 1, RES);
 			scanf("%s", a->names[i]);
 			i++;
 		}

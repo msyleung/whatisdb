@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:43:30 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 17:18:26 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:44:04 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*getline_yay(void)
 	str[strlen(str) - 1] = '\0';
 	if (strlen(str) > 50)
 	{
-		printf("BAAAD! Try again\n");
+		printf("%sInput too long [< 50 chars] Try again:%s\n", B_ON, RES);
 		free(str);
 		str = NULL;
 		return (getline_yay());
@@ -71,7 +71,7 @@ void		add_columns(t_schema *a, FILE *fd, char *db)
 	while (i < a->coloms)
 	{
 		a->names[i] = (char *)malloc(SIZE);
-		printf("\nEnter name of the column #%i:\n", i + 1);
+		printf("\n%sEnter name of the column #%i:%s\n", B_ON, i + 1, RES);
 //		scanf("%s", a->names[i]);
 		a->names[i] = memcpy(a->names[i], getline_yay(), SIZE);
 //		printf("a->names[i]: [%s]\n", a->names[i]);
