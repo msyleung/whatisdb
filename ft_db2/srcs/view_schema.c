@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 11:15:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 16:11:39 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 18:07:33 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_schema(t_schema *a)
 	int space;
 
 	i = 0;
-	printf("| %s#%s ", B_ON, RES);
+	printf("\n| %s#%s ", B_ON, RES);
 	while (i < a->coloms)
 	{
 		j = 0;
@@ -36,25 +36,21 @@ void	print_schema(t_schema *a)
 		i++;
 	}
 	printf("\n");
-	i = 0;
-	while (i++ <= (SIZE / 2.5 + 3) * a->coloms)
+	while (space++ <= (SIZE / 2.5 + 3) * a->coloms)
 		printf("-");
 	printf("\n");
 }
 
 void	view_one(t_schema *a, char *str, int num)
 {
-	int i;
-	int j;
-	int len;
-	char c;
+	int		i;
+	int		j;
+	int		len;
+	char	c;
 
 	i = 0;
-	if (i < 10)
-		c = '0';
-	else
-		c = ' ';
-	printf("|%c%i",c, num);
+	c = (num < 10) ? '0' : '\0';
+	printf("|%c%i", c, num);
 	while (i < a->coloms)
 	{
 		j = 0;
@@ -80,21 +76,18 @@ void	view_all(FILE *fd, t_schema *a)
 	fseek(fd, a->coloms * SIZE + sizeof(int), SEEK_CUR);
 	while ((read = fread(buff, SIZE * a->coloms, 1, fd)) == 1)
 	{
-		view_one(a, buff, i + 1 );
+		view_one(a, buff, i + 1);
 		i++;
 	}
 }
 
-void	view_columns(t_schema *a)
+void	help_search(t_schema *a, int *option)
 {
-	int i;
-
-	i = 0;
-	while (i < a->coloms)
-	{
-		printf("%i: %s\n", i + 1, a->names[i]);
-		i++;
-	}
+	printf("%s\nChoose the key you want to search by:%s\n", B_ON, RES);
+	view_columns(a);
+	scanf("%i", option);
+	(*option)--;
+	printf("%s\nEnter the %s:%s\n", B_ON, a->names[*option], RES);
 }
 
 void	search(t_schema *a, FILE *fd)
@@ -106,11 +99,7 @@ void	search(t_schema *a, FILE *fd)
 	char	search[SIZE];
 
 	count = 0;
-	printf("Choose the number of the key you want to search by:\n");
-	view_columns(a);
-	scanf("%i", &option);
-	option--;
-	printf("Enter the %s:\n", a->names[option]);
+	help_search(a, &option);
 	scanf("%s", search);
 	rewind(fd);
 	fseek(fd, sizeof(int) + SIZE * a->coloms, SEEK_CUR);
@@ -127,5 +116,5 @@ void	search(t_schema *a, FILE *fd)
 		}
 	}
 	if (i == 0)
-		printf("\n '%s' not found", search);
+		printf("\n %s'%s' not found%s\n", B_ON, search, RES);
 }
