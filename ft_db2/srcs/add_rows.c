@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 17:03:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/05/05 12:50:40 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:29:43 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_row(t_schema *a, FILE *fd)
 {
 	int buff_size;
 	char buff[SIZE * a->coloms + 1];
-	char tmp[SIZE + 1];
+	char *tmp;
 	int	write_return;
 	int i;
 
@@ -26,24 +26,12 @@ void	add_row(t_schema *a, FILE *fd)
 	while (i < a->coloms)
 	{
 		printf("Enter the %s:\n", a->names[i]);
-		scanf("%s", tmp);
+//		scanf("%s", tmp);
+		tmp = (char *)malloc(SIZE);
+		tmp = getline_yay();
 		memcpy(&buff[i * (SIZE)], tmp, SIZE );
+		free(tmp);
 		i++;
 	}
-	//	buff[buff_size] = '\0';
 	write_return = fwrite(buff, buff_size, 1, fd);
-	//	printf("write_return=%i", write_return);
-	//testing
-	/*	rewind(fd);
-	//				char delete_me[SIZE * a->coloms + 1];
-	//					fseek(fd, 4 + a->coloms * SIZE, SEEK_CUR);
-	//						fread(delete_me, buff_size, 1, fd);
-	//							i = 0;
-	//								while (i < a->coloms)
-	//									{
-	//											printf("Result:%s\n", &delete_me[i * SIZE]);
-	//													i++;
-	//														}*/
-	//
-	//														//	view_all(&fd);
 }

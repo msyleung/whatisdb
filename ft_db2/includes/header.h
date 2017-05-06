@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:58:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 15:50:19 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:22:06 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void			mod_row(t_schema *a, FILE *fd, char *db_name);
 void			del_row(t_schema *a, FILE *fd, char *db_name);
 void			del_column(t_schema *a, FILE *fd, char *db_name);
 void			get_file(void);
+char			*getline_yay(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:20:04 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 12:52:21 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:33:45 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	mod_options(t_schema *a, FILE *fd, char *buff, int num)
 {
 	int		option;
-//	char	tmp[SIZE + 1];
+	char	*tmp;
 
 	option = 1;
 	print_schema(a);
@@ -28,7 +28,10 @@ void	mod_options(t_schema *a, FILE *fd, char *buff, int num)
 	if (option)
 	{
 		printf("Enter the %s:\n", a->names[option - 1]);
-		scanf("%s", &buff[(option - 1) * SIZE]);
+		tmp = (char *)malloc(SIZE);
+		tmp = getline_yay();
+		memcpy(&buff[(option - 1) * SIZE], tmp, SIZE);
+		free(tmp);
 		fwrite(buff, SIZE * a->coloms, 1, fd);
 	}
 }
