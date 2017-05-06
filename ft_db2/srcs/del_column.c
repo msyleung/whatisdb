@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 13:11:12 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/05 17:17:30 by sleung           ###   ########.fr       */
+/*   Updated: 2017/05/05 17:20:21 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	del_column(t_schema *a, FILE *fd, char *db)
 	remove(db);
 	rename("tmp.dat", db);
 	fd = fopen(db, "r+");
-	printf("\nDONE!\n");
 }

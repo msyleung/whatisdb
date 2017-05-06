@@ -6,7 +6,7 @@
 /*   By: adosiak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 11:15:55 by adosiak           #+#    #+#             */
-/*   Updated: 2017/05/04 17:49:44 by adosiak          ###   ########.fr       */
+/*   Updated: 2017/05/05 16:11:39 by adosiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	print_schema(t_schema *a)
 	int space;
 
 	i = 0;
-	printf("| # ");
+	printf("| %s#%s ", B_ON, RES);
 	while (i < a->coloms)
 	{
 		j = 0;
 		len = strlen(a->names[i]);
-		space = (SIZE / 2 - len) / 2;
+		space = (SIZE / 2.5 - len) / 2;
 		printf("|");
 		while (j++ < space)
 			printf(" ");
-		printf("%s", a->names[i]);
+		printf("%s%s%s", B_ON, a->names[i], RES);
 		while (space-- >= 0)
 			printf(" ");
 		printf("|");
@@ -37,7 +37,7 @@ void	print_schema(t_schema *a)
 	}
 	printf("\n");
 	i = 0;
-	while (i++ <= (SIZE / 2 + 3) * a->coloms)
+	while (i++ <= (SIZE / 2.5 + 3) * a->coloms)
 		printf("-");
 	printf("\n");
 }
@@ -47,15 +47,20 @@ void	view_one(t_schema *a, char *str, int num)
 	int i;
 	int j;
 	int len;
+	char c;
 
 	i = 0;
-	printf("| %i ", num);
+	if (i < 10)
+		c = '0';
+	else
+		c = ' ';
+	printf("|%c%i",c, num);
 	while (i < a->coloms)
 	{
 		j = 0;
 		printf("| %s", &str[i * SIZE]);
 		len = strlen(&str[i * SIZE]);
-		while (j++ < (SIZE / 2 - len))
+		while (j++ < (SIZE / 2.5 - len - 1))
 			printf(" ");
 		printf("|");
 		i++;
